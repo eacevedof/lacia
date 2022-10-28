@@ -36,9 +36,6 @@ final class SpotifyAlbumsProvider
         $url = str_replace("%artistId%", $artistId, self::ALBUMS_ENDPOINT);
         $this->loadAlbums($url, $bearerToken);
         $this->albums = array_merge(...$this->albums);
-        //dd($this->albums);
-        //dd($response["items"], $response["next"], $this->albums);
-        //dd("get-albums",$response->json());
         return $this->albums;
     }
 
@@ -60,7 +57,7 @@ final class SpotifyAlbumsProvider
         if ($artists["error"] ?? "") {
             throw new EndpointConnectException();
         }
-//dd($artists["artists"]["items"][0]);
+
         return $artists["artists"]["items"][0]["id"] ?? "";
     }
 
