@@ -9,4 +9,10 @@ final class AlbumsControllerTest extends TestCase
         $this->get("/api/v1/albums");
         $this->assertEquals(200, $this->response->getStatusCode());
     }
+
+    public function test_response_search_method()
+    {
+        $this->get("/api/v1/albums");
+        $this->assertEquals(200, $this->response->getStatusCode());
+    }
 }
