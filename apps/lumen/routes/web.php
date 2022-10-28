@@ -13,8 +13,9 @@
 |
 */
 
+$router->get("/api/v1/albums", ["uses"=>"SearchAlbumsController@__invoke"]);
+
 $router->get("/", function () use ($router) {
     return $router->app->version();
 });
 
-$router->get("/api/v1/albums", ["uses" => "AlbumsController@search"]);
