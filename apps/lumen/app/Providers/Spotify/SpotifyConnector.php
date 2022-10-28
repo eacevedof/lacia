@@ -4,6 +4,7 @@ namespace App\Providers\Spotify;
 
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Http;
+use App\Exceptions\Spotify\NoBearerTokenReceivedException;
 
 final class SpotifyConnector
 {
@@ -18,7 +19,7 @@ final class SpotifyConnector
         $this->clientSecret = env("SPOTIFY_CLIENT_SECRET");
     }
 
-    public function getBearerToken(): array
+    public function getBearerToken(): string
     {
         $response = Http::withHeaders([
             "Authorization" => "Basic ".base64_encode($this->clientId.":".$this->clientSecret)
@@ -27,7 +28,10 @@ final class SpotifyConnector
                 "grant_type" => "client_credentials",
             ]);
 
-        //print_r($response->json());
-        return [];
+        $token = $response->json();
+        if (!($token["access_token"] ?? ""))
+            throw new NoBearerTokenReceivedException();
+
+        return $token["access_token"];
     }
 }

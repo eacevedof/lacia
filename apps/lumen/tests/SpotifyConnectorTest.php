@@ -11,10 +11,10 @@ final class SpotifyConnectorTest extends TestCase
         $this->assertInstanceOf(SpotifyConnector::class, $connector);
     }
 
-    public function test_nok_bearer_token()
+    public function test_bearer_token_received()
     {
         $connector = new SpotifyConnector();
         $bearerToken = $connector->getBearerToken();
-        $this->assertArrayNotHasKey("access_token", $bearerToken);
+        $this->assertNotEmpty($bearerToken);
     }
 }
