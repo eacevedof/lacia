@@ -15,4 +15,5 @@ final class AlbumsControllerTest extends TestCase
         $this->get("/api/v1/albums");
         $this->assertEquals(200, $this->response->getStatusCode());
     }
+
 }
