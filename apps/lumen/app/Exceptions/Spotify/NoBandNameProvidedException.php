@@ -4,12 +4,11 @@
 namespace App\Exceptions\Spotify;
 
 use \Exception;
-use Illuminate\Http\Response;
 
 final class NoBandNameProvidedException extends Exception
 {
-    public function render(): Response
+    public function __construct()
     {
-        return response(["error" => "No band name provided", "code"=>400], 400);
+        parent::__construct("No band name provided", 400);
     }
 }

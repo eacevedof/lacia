@@ -4,12 +4,11 @@
 namespace App\Exceptions\Spotify;
 
 use \Exception;
-use Illuminate\Http\Response;
 
 final class BandNotFoundException extends Exception
 {
-    public function render(): Response
+    public function __construct()
     {
-        return response(["error" => "Band not found", "code" => 204], 204);
+        parent::__construct("Band not found", 404);
     }
 }

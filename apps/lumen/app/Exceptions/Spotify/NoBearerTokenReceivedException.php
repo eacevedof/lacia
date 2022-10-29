@@ -2,12 +2,11 @@
 namespace App\Exceptions\Spotify;
 
 use \Exception;
-use Illuminate\Http\Response;
 
 final class NoBearerTokenReceivedException extends Exception
 {
-    public function render(): Response
+    public function __construct()
     {
-        return response(["error" => "No bearer token received", "code"=>500], 500);
+        parent::__construct("No bearer token received", 500);
     }
 }

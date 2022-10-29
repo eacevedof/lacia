@@ -17,7 +17,7 @@ final class SpotifyAlbumsProviderTest extends TestCase
     public function test_albums_obtained_from_soda_stereo()
     {
         $provider = new SpotifyAlbumsProvider(new SpotifyConnector());
-        $result = $provider->getAlbums("soda stereo");
+        $result = $provider->getAlbumsOrFail("soda stereo");
         $this->assertNotEmpty($result);
     }
 
@@ -25,14 +25,14 @@ final class SpotifyAlbumsProviderTest extends TestCase
     {
         $this->expectException(NoBandNameProvidedException::class);
         $provider = new SpotifyAlbumsProvider(new SpotifyConnector());
-        $provider->getAlbums("");
+        $provider->getAlbumsOrFail("");
     }
 
-    public function test_band_not_found_exception_with_code_204()
+    public function test_band_not_found_exception_with_code_404()
     {
         $this->expectException(BandNotFoundException::class);
         $provider = new SpotifyAlbumsProvider(new SpotifyConnector());
         $md5 = md5("this is a weird band name ".date("Y-m-d"));
-        $provider->getAlbums($md5);
+        $provider->getAlbumsOrFail($md5);
     }
 }

@@ -21,12 +21,13 @@ final class SpotifyAlbumsProvider
         $this->spotifyConnect = $spotifyConnect;
     }
 
-    public function getAlbums(string $bandName): array
+    public function getAlbumsOrFail(string $bandName): array
     {
         if (!$bandName = trim($bandName)) {
             throw new NoBandNameProvidedException();
         }
 
+        //$bandName = urlencode($bandName);
         if (!$artistId = $this->getArtistIdByName($bandName)) {
             throw new BandNotFoundException();
         }

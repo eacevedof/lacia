@@ -2,12 +2,11 @@
 namespace App\Exceptions\Spotify;
 
 use \Exception;
-use Illuminate\Http\Response;
 
 final class EndpointConnectException extends Exception
 {
-    public function render(): Response
+    public function __construct()
     {
-        return response(["error" => "Endpoint refused connection", "code"=>500], 500);
+        parent::__construct("Endpoint refused connection", 500);
     }
 }
