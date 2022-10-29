@@ -10,6 +10,6 @@ final class NoBandNameProvidedException extends Exception
 {
     public function render(): Response
     {
-        return response(["error" => "No band name provided"], 400);
+        return response(["error" => "No band name provided", "code"=>400], 400);
     }
 }

@@ -8,6 +8,6 @@ final class EndpointConnectException extends Exception
 {
     public function render(): Response
     {
-        return response(["error" => "Endpoint refused connection"], 500);
+        return response(["error" => "Endpoint refused connection", "code"=>500], 500);
     }
 }

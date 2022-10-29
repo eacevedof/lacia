@@ -8,6 +8,6 @@ final class NoBearerTokenReceivedException extends Exception
 {
     public function render(): Response
     {
-        return response(["error" => "No bearer token received"], 500);
+        return response(["error" => "No bearer token received", "code"=>500], 500);
     }
 }

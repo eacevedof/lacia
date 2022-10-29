@@ -10,6 +10,6 @@ final class BandNotFoundException extends Exception
 {
     public function render(): Response
     {
-        return response(["error" => "Band not found"], 204);
+        return response(["error" => "Band not found", "code" => 204], 204);
     }
 }
