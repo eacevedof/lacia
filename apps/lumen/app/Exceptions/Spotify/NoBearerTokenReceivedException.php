@@ -1,9 +1,7 @@
 <?php
 namespace App\Exceptions\Spotify;
 
-use \Exception;
-
-final class NoBearerTokenReceivedException extends Exception
+final class NoBearerTokenReceivedException extends SpotifyException
 {
     public function __construct()
     {

@@ -3,9 +3,7 @@
 
 namespace App\Exceptions\Spotify;
 
-use \Exception;
-
-final class NoBandNameProvidedException extends Exception
+final class NoBandNameProvidedException extends SpotifyException
 {
     public function __construct()
     {

@@ -1,9 +1,7 @@
 <?php
 namespace App\Exceptions\Spotify;
 
-use \Exception;
-
-final class RefusedConnectionException extends Exception
+final class RefusedConnectionException extends SpotifyException
 {
     public function __construct()
     {
