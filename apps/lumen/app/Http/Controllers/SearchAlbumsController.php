@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Exceptions\Spotify\BandNotFoundException;
 use App\Traits\LogTrait;
 use App\Providers\Spotify\SpotifyAlbumsProvider;
 use App\Transformers\Albums\SearchTransformer;
@@ -31,6 +32,7 @@ final class SearchAlbumsController extends Controller
             ], $ex->getCode());
         }
         catch (Exception $ex) {
+            //guardo error para futura cobertura
             $this->logError($ex,SearchAlbumsController::class);
             return response()->json([
                 "error" => "Some unexpected error occurred",
