@@ -4,6 +4,7 @@ namespace Tests;
 use App\Providers\Spotify\SpotifyAlbumsProvider;
 use App\Providers\Spotify\SpotifyConnector;
 use App\Exceptions\Spotify\NoBandNameProvidedException;
+use App\Exceptions\Spotify\BandNotFoundException;
 
 final class SpotifyAlbumsProviderTest extends TestCase
 {
@@ -25,5 +26,13 @@ final class SpotifyAlbumsProviderTest extends TestCase
         $this->expectException(NoBandNameProvidedException::class);
         $provider = new SpotifyAlbumsProvider(new SpotifyConnector());
         $provider->getAlbums("");
+    }
+
+    public function test_band_not_found_exception_with_code_204()
+    {
+        $this->expectException(BandNotFoundException::class);
+        $provider = new SpotifyAlbumsProvider(new SpotifyConnector());
+        $md5 = md5("this is a weird band name ".date("Y-m-d"));
+        $provider->getAlbums($md5);
     }
 }
