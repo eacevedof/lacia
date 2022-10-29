@@ -16,7 +16,6 @@ final class SearchAlbumsController extends Controller
     public function __invoke(SpotifyAlbumsProvider $spotifyAlbumsProvider): JsonResponse
     {
         try {
-            throw new Exception("fake error");
             $q = request()->get("q", "");
             $albums = $spotifyAlbumsProvider->getAlbumsOrFail($q);
         }

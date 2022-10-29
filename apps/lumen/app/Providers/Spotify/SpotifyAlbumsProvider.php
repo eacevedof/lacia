@@ -27,6 +27,7 @@ final class SpotifyAlbumsProvider
             throw new NoBandNameProvidedException();
         }
 
+        //esto rompe la busqueda y no encuentra nada
         //$bandName = urlencode($bandName);
         if (!$artistId = $this->getArtistIdByName($bandName)) {
             throw new BandNotFoundException();
@@ -59,6 +60,7 @@ final class SpotifyAlbumsProvider
             throw new RefusedConnectionException();
         }
 
+        //por norma general el artista 0 es el que encaja mejor con la busqueda
         return $artists["artists"]["items"][0]["id"] ?? "";
     }
 
