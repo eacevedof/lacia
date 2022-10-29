@@ -15,7 +15,6 @@ final class SearchAlbumsController extends Controller
             $albums = $spotifyAlbumsProvider->getAlbumsOrFail($q);
         }
         catch (Exception $ex) {
-            //dd($ex->getCode(), $ex->getMessage());
             return response()->json([
                 "error" => $ex->getMessage(),
                 "code" => $ex->getCode()

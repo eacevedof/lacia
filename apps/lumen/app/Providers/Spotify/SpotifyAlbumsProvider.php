@@ -2,7 +2,7 @@
 
 namespace App\Providers\Spotify;
 
-use App\Exceptions\Spotify\EndpointConnectException;
+use App\Exceptions\Spotify\RefusedConnectionException;
 use Illuminate\Support\Facades\Http;
 use App\Exceptions\Spotify\NoBandNameProvidedException;
 use App\Exceptions\Spotify\BandNotFoundException;
@@ -56,7 +56,7 @@ final class SpotifyAlbumsProvider
         ]);
         $artists = $response->json();
         if ($artists["error"] ?? "") {
-            throw new EndpointConnectException();
+            throw new RefusedConnectionException();
         }
 
         return $artists["artists"]["items"][0]["id"] ?? "";
