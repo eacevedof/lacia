@@ -74,7 +74,7 @@ js-serve: ## http://localhost:8081/
 	cd ./apps/vue; npm run serve;
 
 install-lumen:
-	docker exec -it contphp sh -c 'cd /appdata/www/lumen/; composer update'
+	docker exec -it contphp sh -c 'cd /appdata/www/lumen/; composer update; '
 
 install-vue:
 	cd ./apps/vue; npm install; npm run build

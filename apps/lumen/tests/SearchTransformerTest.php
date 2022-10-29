@@ -25,6 +25,7 @@ final class SearchTransformerTest extends TestCase
 
     public function setUp(): void
     {
+        parent::setUp();
         $provider = new SpotifyAlbumsProvider(new SpotifyConnector());
         $this->albums = $provider->getAlbumsOrFail(self::BAND_NAME);
         $this->anyTransformResult = (new SearchTransformer())->transformAlbums($this->albums);
