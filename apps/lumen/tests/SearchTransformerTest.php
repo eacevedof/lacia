@@ -7,6 +7,8 @@ use App\Transformers\Albums\SearchTransformer;
 
 final class SearchTransformerTest extends TestCase
 {
+    private const BAND_NAME = "Soda Stereo";
+
     private array $requiredNodes = [
         "albums" => [
             "root" => ["name", "release_date", "total_tracks", "images"],
@@ -24,7 +26,7 @@ final class SearchTransformerTest extends TestCase
     public function setUp(): void
     {
         $provider = new SpotifyAlbumsProvider(new SpotifyConnector());
-        $this->albums = $provider->getAlbumsOrFail("soda stereo");
+        $this->albums = $provider->getAlbumsOrFail(self::BAND_NAME);
         $this->anyResult = (new SearchTransformer())->transformAlbums($this->albums);
     }
 
@@ -72,21 +74,33 @@ final class SearchTransformerTest extends TestCase
 
     public function test_required_nodes_in_albums()
     {
+        $reqRoot = $this->requiredNodes["albums"]["root"];
+        $reqImg0 = $this->requiredNodes["albums"]["images0"];
 
+        foreach ($this->albums as $i => $album) {
+            $root = array_keys($album);
+            $root = array_intersect($reqRoot, $root);
+            if (count($root)!==count($reqRoot))
+                $this->fail("not required nodes in album root $i");
+            $image0 = array_keys($album["images"][0]);
+            $image0 = array_intersect($reqImg0, $image0);
+            if (count($image0)!==count($reqImg0))
+                $this->fail("not required nodes in album image0 $i");
+        }
+        $this->assertTrue(count($this->albums)===($i+1));
     }
-
 
     public function test_transformed_result_is_an_array()
     {
         $this->assertIsArray($this->anyResult);
     }
 
-    public function test_transformed_result_with_root_nodes()
+    public function est_transformed_result_with_root_nodes()
     {
 
     }
 
-    public function test_transformed_result_has_all_required_nodes()
+    public function est_transformed_result_has_all_required_nodes()
     {
 
     }
