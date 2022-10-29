@@ -1,7 +1,8 @@
 ## LACIA APPS
 
 - Si bien todo el entorno está montado con docker. Hay algunos pasos que hay que seguir para dejar las apps levantadas.
-- Necesitamos poder ejecutar archivos makefile
+- **importante!** Necesitamos poder ejecutar archivos makefile
+  - `sudo apt-get -y install make`
 
 ## Comandos de inicio
 - make rebuild-all
@@ -44,6 +45,8 @@ SPOTIFY_CLIENT_SECRET=yyy
 ## ejecutar tests
 - php
   - make php-test
+  - make rem-cache
+    - limpia la cache del bearer token
 - js
   - make js-test
 
