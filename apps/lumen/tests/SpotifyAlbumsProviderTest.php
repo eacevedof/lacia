@@ -3,6 +3,7 @@
 namespace Tests;
 use App\Providers\Spotify\SpotifyAlbumsProvider;
 use App\Providers\Spotify\SpotifyConnector;
+use App\Exceptions\Spotify\NoBandNameProvidedException;
 
 final class SpotifyAlbumsProviderTest extends TestCase
 {
@@ -17,5 +18,12 @@ final class SpotifyAlbumsProviderTest extends TestCase
         $provider = new SpotifyAlbumsProvider(new SpotifyConnector());
         $result = $provider->getAlbums("soda stereo");
         $this->assertNotEmpty($result);
+    }
+
+    public function test_no_band_name_exception_with_code_400()
+    {
+        $this->expectException(NoBandNameProvidedException::class);
+        $provider = new SpotifyAlbumsProvider(new SpotifyConnector());
+        $provider->getAlbums("");
     }
 }
