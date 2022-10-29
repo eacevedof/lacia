@@ -30,8 +30,10 @@ SPOTIFY_CLIENT_SECRET=yyy
 
 ## Endpoints disponibles
 - api albums
-  - [http://localhost:9080](http://localhost:9080/)
+  - [http://localhost:9080/api/v1/albums?q=soda stereo](http://localhost:9080/api/v1/albums?q=soda%20stereo)
   - **NOTA** Uno de los requerimientos es que sea el nombre de una **banda** no he encontrado alguna propiedad que me pueda identificar un artista como banda
+  - Deberia verse algo como esto:  
+    - ![](https://github.com/eacevedof/lacia/blob/main/challenge/images/soda-stereo-result.png)
 
 - servidor movies.json
   - [http://localhost:9090](http://localhost:9090/)
