@@ -67,8 +67,7 @@ log-error: ## logs error
 	tail -f lumen-${TODAY}.log;
 
 js-test:
-	cd ./apps/vue; \
-	npm run test:unit
+	cd ./apps/vue; npm run test:unit;
 
 js-serve: ## http://localhost:8081/
 	cd ./apps/vue; npm run serve;
