@@ -2,7 +2,7 @@
 
 namespace Tests;
 
-final class AlbumsControllerTest extends TestCase
+final class SearchAlbumsControllerTest extends TestCase
 {
     public function test_albums_endpoint()
     {
