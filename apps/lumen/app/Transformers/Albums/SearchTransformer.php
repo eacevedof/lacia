@@ -37,6 +37,30 @@ final class SearchTransformer
      *
      * */
 
+    public function transformAlbums(array $albums): array
+    {
+        //dd($albums);
+        return array_map(function (array $item){
+            return $this->transformAlbum($item);
+        },$albums);
+    }
 
+    private function transformAlbum(array $album): array
+    {
+        return $album ? [
+            "name" => $album["name"] ?? "",
+            "released" => $album["release_date"] ?? "",
+            "tracks" => $album["total_tracks"] ?? "",
+            "cover" => $this->transformCover($album["images"][0] ?? []),
+        ] : [];
+    }
 
+    private function transformCover(array $image): array
+    {
+        return $image ? [
+            "height" => $image["height"] ?? "",
+            "width" => $image["width"] ?? "",
+            "url" => $image["url"] ?? "",
+        ]: [];
+    }
 }

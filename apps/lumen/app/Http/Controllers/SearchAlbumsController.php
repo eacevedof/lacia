@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Traits\LogTrait;
 use App\Providers\Spotify\SpotifyAlbumsProvider;
+use App\Transformers\Albums\SearchTransformer;
 use Illuminate\Http\JsonResponse;
 use App\Exceptions\Spotify\SpotifyException;
 use \Exception;
@@ -13,11 +14,15 @@ final class SearchAlbumsController extends Controller
 {
     use LogTrait;
 
-    public function __invoke(SpotifyAlbumsProvider $spotifyAlbumsProvider): JsonResponse
+    public function __invoke(
+        SpotifyAlbumsProvider $spotifyAlbumsProvider,
+        SearchTransformer $searchTransformer
+    ): JsonResponse
     {
         try {
             $q = request()->get("q", "");
             $albums = $spotifyAlbumsProvider->getAlbumsOrFail($q);
+            $albums = $searchTransformer->transformAlbums($albums);
         }
         catch (SpotifyException $ex) {
             return response()->json([
