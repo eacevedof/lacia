@@ -4,6 +4,7 @@
     <div>
       <movies-filters-comp/>
     </div>
+    <h2>Items found: {{numMoviesRef}}</h2>
     <ul>
       <li v-for="(movie, index) in moviesRef" :key="`mov-${index}`">
         <p>movie: {{index + 1}}</p>
@@ -28,10 +29,12 @@ export default {
     const store = useStore()
     let allmovies = []
     const moviesRef = ref([])
+    const numMoviesRef = ref(0)
 
     onMounted(async () => {
       const result = await movies.async_find_all()
       allmovies = result.entries
+      numMoviesRef.value = allmovies.length
       moviesRef.value = [...allmovies]
     })
 
@@ -51,6 +54,7 @@ export default {
         movies = filters.get_filtered_by_type(type, movies)
       }
       moviesRef.value = [...movies]
+      numMoviesRef.value = movies.length
     }
 
     watch(() => store.getters.get_filter_order, apply_filters)
@@ -58,7 +62,8 @@ export default {
     watch(() => store.getters.get_filter_year, apply_filters)
 
     return {
-      moviesRef
+      moviesRef,
+      numMoviesRef
     }
   },
   components: {
