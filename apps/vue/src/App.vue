@@ -7,7 +7,25 @@
   </nav>
   <router-view/>
 </template>
+<script>
+import {ref} from "vue"
+import {useAuth0} from "@auth0/auth0-vue";
 
+export default {
+  setup() {
+    const {isAuthenticated } = useAuth0()
+    const isLoggedRef = ref(false)
+    console.log("app isauth", isAuthenticated.value)
+    if (isAuthenticated.value) {
+        isLoggedRef.value = true
+    }
+
+    return {
+      isLoggedRef
+    }
+  }
+}
+</script>
 <style>
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;

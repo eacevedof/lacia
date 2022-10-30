@@ -35,15 +35,10 @@ import {useAuth0} from "@auth0/auth0-vue";
 export default {
 
   setup() {
-    const { loginWithRedirect, user, isAuthenticated } = useAuth0()
-    console.log("isAuthenticated", isAuthenticated.value, "user", user.value)
+    const { isAuthenticated } = useAuth0()
     const router = useRouter()
 
     if (!isAuthenticated.value) {
-      //loginWithRedirect()
-      //const router = useRouter()
-      //router.push("/login")
-      //return
       router.push("/")
     }
 
@@ -89,7 +84,6 @@ export default {
       moviesRef,
       numMoviesRef,
       spinnerRef,
-      user,
       isAuthenticated,
     }
   },
