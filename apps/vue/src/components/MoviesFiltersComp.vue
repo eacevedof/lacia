@@ -19,6 +19,7 @@
         <option v-for="order in selOrder" :value="order.key" :key="order.key">{{order.value}}</option>
       </select>
     </div>
+    <button type="button" @click="reset_filters">Reset filters</button>
   </div>
 </template>
 <script>
@@ -62,6 +63,12 @@ export default {
       //console.log("movies",store.state.movies.filters)
     }
 
+    const reset_filters = () => {
+      refFilterOrder.value = ""
+      relFilterYear.value = ""
+      relFilterType.value = ""
+    }
+
     return {
       selYears,
       selTypes,
@@ -71,7 +78,8 @@ export default {
       relFilterType,
       relFilterYear,
 
-      emit_filter_applied
+      emit_filter_applied,
+      reset_filters
     };
   }
 };
