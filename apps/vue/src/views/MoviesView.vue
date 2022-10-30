@@ -1,35 +1,39 @@
 <template>
-  <div class="about">
-    <h1>Movies page</h1>
-    <div>
+  <div class="movies">
+    <h1>Movies</h1>
+    <spinner-comp :show="spinnerRef" />
+    <div v-show="!spinnerRef">
       <movies-filters-comp/>
+      <h2>Items found: <span style="color:blue">{{numMoviesRef}}</span></h2>
+      <ul>
+        <li v-for="(movie, index) in moviesRef" :key="`mov-${index}`">
+          <p>
+            ({{index + 1}})
+            <b>title: {{ movie.title }}</b>  <span style="color:purple">{{movie.releaseYear}}</span>  <span style="color:green;">{{movie.programType}}</span>
+          </p>
+          <p>desc: {{ movie.description}}</p>
+          <a :href="movie.images['Poster Art'].url" target="_blank">
+            <img :src="movie.images['Poster Art'].url" height="150" width="100">
+          </a>
+        </li>
+      </ul>
     </div>
-    <h2>Items found: <span style="color:blue">{{numMoviesRef}}</span></h2>
-    <ul>
-      <li v-for="(movie, index) in moviesRef" :key="`mov-${index}`">
-        <p>
-          ({{index + 1}})
-          <b>title: {{ movie.title }}</b>  <span style="color:purple">{{movie.releaseYear}}</span>  <span style="color:green;">{{movie.programType}}</span>
-        </p>
-        <p>desc: {{ movie.description}}</p>
-        <a :href="movie.images['Poster Art'].url" target="_blank">
-          <img :src="movie.images['Poster Art'].url" height="150" width="100">
-        </a>
-      </li>
-    </ul>
   </div>
 </template>
 <script>
 import {onMounted, ref, watch} from "vue"
 import movies from "@/libs/providers/movies/movies-provider"
 import MoviesFiltersComp from "@/components/MoviesFiltersComp";
+import SpinnerComp from "@/components/SpinnerComp";
 import {useStore} from "vuex";
 import filters from "@/libs/transformers/movies/movies-filters";
 
 export default {
+
   setup() {
     const store = useStore()
     let allmovies = []
+    const spinnerRef = ref(true)
     const moviesRef = ref([])
     const numMoviesRef = ref(0)
 
@@ -38,6 +42,7 @@ export default {
       allmovies = result.entries
       numMoviesRef.value = allmovies.length
       moviesRef.value = [...allmovies]
+      spinnerRef.value = false
     })
 
     const apply_filters = () => {
@@ -66,11 +71,13 @@ export default {
 
     return {
       moviesRef,
-      numMoviesRef
+      numMoviesRef,
+      spinnerRef,
     }
   },
   components: {
-    MoviesFiltersComp
+    MoviesFiltersComp,
+    SpinnerComp,
   }
 }
 </script>
