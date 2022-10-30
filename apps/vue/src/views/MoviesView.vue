@@ -15,15 +15,14 @@
 </template>
 <script>
 import {onMounted, ref} from "vue"
-import {async_find_all} from "@/libs/providers/movies/movies-provider"
-
+import movies from "@/libs/providers/movies/movies-provider"
 
 export default {
   setup() {
     const moviesRef = ref([])
     onMounted(async () => {
-      const movies = await async_find_all()
-      moviesRef.value = movies.entries
+      const result = await movies.async_find_all()
+      moviesRef.value = result.entries
       console.log(moviesRef.value)
     })
 

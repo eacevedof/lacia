@@ -2,7 +2,7 @@ import axios from "axios";
 
 const ENDPOINT = process.env.VUE_APP_MOVIES_ENDPOINT
 
-export const async_find_all = async () => {
+const _async_find_all = async () => {
     try {
         const movies = await axios.get(ENDPOINT)
         return movies.data
@@ -11,3 +11,9 @@ export const async_find_all = async () => {
         return []
     }
 }
+
+const movies = {
+    async_find_all: _async_find_all
+}
+
+export default movies
