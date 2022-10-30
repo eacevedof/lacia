@@ -5,7 +5,7 @@ const get_distinct_types = movies => [emptykeyvalue, ...Array.from(new Set(movie
 const get_orderby_values = () => [emptykeyvalue, {key:"name",value:"Name"}, {key:"year",value:"Year"}]
 
 const get_filtered_by_type = (type, movs) => movs.filter(movie => movie?.programType === type)
-const get_filtered_by_year = (year, movs) => movs.filter(movie => movie?.releaseYear === year)
+const get_filtered_by_year = (year, movs) => movs.filter(movie => parseInt(movie?.releaseYear) === parseInt(year))
 
 const _order_by_name = (moviea, movieb) => {
     if (moviea.title > movieb.title) return 1

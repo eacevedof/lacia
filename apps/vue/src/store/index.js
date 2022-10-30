@@ -12,9 +12,17 @@ export default createStore({
   },
 
   getters: {
-    get_filters(state) {
-      return state.movies.filters
-    }
+    get_filter_order(state) {
+      return state.movies.filters.order
+    },
+
+    get_filter_year(state) {
+      return state.movies.filters.year
+    },
+
+    get_filter_type(state) {
+      return state.movies.filters.type
+    },
   },
 
   mutations: {

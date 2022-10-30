@@ -55,13 +55,9 @@ export default {
       store.state.movies.filters.type = relFilterType.value
       store.state.movies.filters.order = refFilterOrder.value
       store.state.movies.filters.year = relFilterYear.value
-      //store.mutations.set_order(store.state, refFilterOrder)
-      //store.mutations.set_year(store.state, relFilterYear)
-      //store.mutations.set_type(store.state, relFilterType)
-      store.dispatch("set_order_action")
+       store.dispatch("set_order_action")
       store.dispatch("set_type_action")
       store.dispatch("set_year_action")
-
       console.log("movies",store.state.movies.filters)
     }
 
