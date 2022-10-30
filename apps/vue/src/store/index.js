@@ -19,7 +19,7 @@ export default createStore({
 
   mutations: {
     set_order(state) {
-      const order = state.movies.filters.order
+      const order =  state.movies.filters.order
       state.movies.filters.order = order
     },
     set_year(state) {
@@ -27,7 +27,7 @@ export default createStore({
       state.movies.filters.year = year
     },
     set_type(state) {
-      const type = state.movies.filters.type
+      const type =  state.movies.filters.type
       state.movies.filters.type = type
     },
   },
