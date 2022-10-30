@@ -37,17 +37,20 @@ export default {
 
     watch(() => store.getters.get_filter_order, function() {
       const order = store.state.movies.filters.order
+      console.log("order",order)
       if(order==="Year") moviesRef.value = filters.get_ordered_by_year(order, allmovies)
       else moviesRef.value = filters.get_ordered_by_name(order, allmovies)
     })
 
     watch(() => store.getters.get_filter_type, function() {
       const type = store.state.movies.filters.type
+      console.log("type",type)
       moviesRef.value = filters.get_filtered_by_type(type, allmovies)
     })
 
     watch(() => store.getters.get_filter_year, function() {
-      const year = store.state.movies.filters.order
+      const year = store.state.movies.filters.year
+      console.log("year",year)
       moviesRef.value = filters.get_filtered_by_year(year, allmovies)
     })
 
