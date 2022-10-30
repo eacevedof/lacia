@@ -4,11 +4,13 @@
     <div>
       <movies-filters-comp/>
     </div>
-    <h2>Items found: {{numMoviesRef}}</h2>
+    <h2>Items found: <span style="color:blue">{{numMoviesRef}}</span></h2>
     <ul>
       <li v-for="(movie, index) in moviesRef" :key="`mov-${index}`">
-        <p>movie: {{index + 1}}</p>
-        <b>title: {{ movie.title }} {{movie.releaseYear}} {{movie.programType}}</b>
+        <p>
+          ({{index + 1}})
+          <b>title: {{ movie.title }}</b>  <span style="color:purple">{{movie.releaseYear}}</span>  <span style="color:green;">{{movie.programType}}</span>
+        </p>
         <p>desc: {{ movie.description}}</p>
         <a :href="movie.images['Poster Art'].url" target="_blank">
           <img :src="movie.images['Poster Art'].url" height="150" width="100">
