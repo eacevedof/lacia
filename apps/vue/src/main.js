@@ -15,7 +15,7 @@ createApp(App).
     //use(axios). //da error de recursividad
     use(createAuth0({
         domain: ENV.VUE_APP_AUTH0_DOMAIN,
-        client_id: ENV.VUE_APP_AUTH0_DOMAIN,
-        redirect_uri: window.location.origin,
+        client_id: ENV.VUE_APP_AUTH0_CLIENT_ID,
+        redirect_uri: ENV.VUE_APP_AUTH0_LOGIN_CALLBACK,
     })).
     mount('#app')
