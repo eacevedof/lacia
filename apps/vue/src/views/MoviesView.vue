@@ -20,7 +20,9 @@ export default {
   setup() {
     const moviesRef = ref([])
     onMounted(async () => {
-      moviesRef.value = await async_find_all()
+      const movies = await async_find_all()
+      moviesRef.value = movies.entries
+      console.log(moviesRef.value)
     })
 
     return {
