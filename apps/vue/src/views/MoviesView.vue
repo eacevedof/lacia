@@ -21,16 +21,32 @@
   </div>
 </template>
 <script>
+import {useRouter} from "vue-router"
 import {onMounted, ref, watch} from "vue"
 import movies from "@/libs/providers/movies/movies-provider"
 import MoviesFiltersComp from "@/components/MoviesFiltersComp";
 import SpinnerComp from "@/components/SpinnerComp";
 import {useStore} from "vuex";
 import filters from "@/libs/transformers/movies/movies-filters";
+import {useAuth0} from "@auth0/auth0-vue";
+
+//const ENV = process.env
 
 export default {
 
   setup() {
+    const { loginWithRedirect, user, isAuthenticated } = useAuth0()
+    console.log("isAuthenticated", isAuthenticated.value, "user", user.value)
+    const router = useRouter()
+
+    if (!isAuthenticated.value) {
+      //loginWithRedirect()
+      //const router = useRouter()
+      //router.push("/login")
+      //return
+      router.push("/")
+    }
+
     const store = useStore()
     let allmovies = []
     const spinnerRef = ref(true)
@@ -73,8 +89,11 @@ export default {
       moviesRef,
       numMoviesRef,
       spinnerRef,
+      user,
+      isAuthenticated,
     }
   },
+
   components: {
     MoviesFiltersComp,
     SpinnerComp,

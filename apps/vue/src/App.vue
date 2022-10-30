@@ -2,6 +2,7 @@
   <nav>
     <router-link to="/">Home</router-link> |
     <router-link to="/movies">Movies</router-link> |
+    <router-link to="/login">Log in</router-link> |
     <router-link to="/logout">Log out</router-link>
   </nav>
   <router-view/>
