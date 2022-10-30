@@ -66,6 +66,9 @@ log-error: ## logs error
 	rm -f *.log; touch lumen-${TODAY}.log; clear; \
 	tail -f lumen-${TODAY}.log;
 
+js-build:
+		cd ./apps/vue; npm run build
+
 js-test:
 	cd ./apps/vue; npm run test:unit;
 
