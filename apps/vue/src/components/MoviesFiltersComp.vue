@@ -67,6 +67,7 @@ export default {
       refFilterOrder.value = ""
       relFilterYear.value = ""
       relFilterType.value = ""
+      emit_filter_applied()
     }
 
     return {
