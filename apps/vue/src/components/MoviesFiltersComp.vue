@@ -1,11 +1,9 @@
 <template>
   <div>
-     Se podrá ordenar por: nombre, año.
-     Se podrá filtrar por: año, película o serie.
-    
-    <label for="year">year</label>
-    <select v-model="selyear" id="year">
-      <option v-for="year in selyear" :key="year.key">{{year.value}}</option>
+    <h4>Filters</h4>
+    <label for="year">Year</label>
+    <select v-model="selYears" id="year">
+      <option v-for="year in selYears" :key="year.key">{{year.value}}</option>
     </select>
   </div>
 </template>
@@ -16,7 +14,6 @@ import filters from "@/libs/transformers/movies/movies-filters";
 
 
 export default {
-  name: "MoviesFiltersComp",
   setup() {
     //const refFilterOrder = ref("")
     //const relFilterYear = ref("")
@@ -28,11 +25,12 @@ export default {
 
 
     onMounted(async () => {
-      const films = await movies.async_find_all()?.entries
+      let result = await movies.async_find_all()
+      const films = result.entries
+      //console.log("FILMS: ", films)
       selYears.value = filters.get_distinct_years(films)
       selTypes.value = filters.get_distinct_types(films)
       selOrder.value = filters.get_orderby_values()
-      
 
     })
 

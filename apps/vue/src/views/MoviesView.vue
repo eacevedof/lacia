@@ -28,7 +28,7 @@ export default {
     onMounted(async () => {
       const result = await movies.async_find_all()
       moviesRef.value = result.entries
-      console.log(moviesRef.value)
+      //console.log("movies-view",moviesRef.value)
     })
 
     return {
