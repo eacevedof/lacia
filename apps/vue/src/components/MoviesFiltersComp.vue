@@ -3,19 +3,19 @@
     <h4>Filters</h4>
     <div>
       <label for="year">Year</label>
-      <select v-model="selYears" id="year">
+      <select v-model="relFilterYear" id="year">
         <option v-for="year in selYears" :key="year.key">{{year.value}}</option>
       </select>
     </div>
     <div>
-      <label for="year">Film type</label>
-      <select v-model="selTypes" id="film-type">
+      <label for="film-type">Film type</label>
+      <select v-model="relFilterType" id="film-type">
         <option v-for="type in selTypes" :key="type.key">{{type.value}}</option>
       </select>
     </div>
     <div>
-      <label for="year">Order by</label>
-      <select v-model="selOrder" id="order-by">
+      <label for="order-by">Order by</label>
+      <select v-model="refFilterOrder" id="order-by">
         <option v-for="order in selOrder" :key="order.key">{{order.value}}</option>
       </select>
     </div>
@@ -28,10 +28,11 @@ import filters from "@/libs/transformers/movies/movies-filters";
 
 
 export default {
+
   setup() {
-    //const refFilterOrder = ref("")
-    //const relFilterYear = ref("")
-    //const relFilterType = ref("")
+    const refFilterOrder = ref("")
+    const relFilterYear = ref("")
+    const relFilterType = ref("")
 
     const selYears = ref([])
     const selTypes = ref([])
@@ -49,7 +50,11 @@ export default {
     return {
       selYears,
       selTypes,
-      selOrder
+      selOrder,
+
+      refFilterOrder,
+      relFilterType,
+      relFilterYear
     };
   }
 };
