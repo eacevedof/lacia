@@ -50,6 +50,17 @@ SPOTIFY_CLIENT_SECRET=yyy
 - js
   - make js-test
 
+## app movies front
+- No esta completa. Hay un error al hacer el build para **dist**
+- Se puede probar con `js-serve`
+- Se mostrará todo el menú desde el principio pero no dejará acceder a **movies** si no se ha iniciado sesion
+- Para esto hay que entrar en Log in y solo deja usar gmail.
+- Por algún motivo no me redirige a la pagina de **movies: http://localhost:8081/movies** pero si se hace de modo manual funciona.
+- Se verá algo como esto:
+  - ![](https://github.com/eacevedof/lacia/blob/main/challenge/images/movies-app.png)
+- Nota:
+  - He probado hacerlo con **composition api** que es algo nuevo y no lo habia tocado antes.
+
 
 #### extra
 - [be.pdf](https://github.com/eacevedof/lacia/blob/main/challenge/be.pdf)
