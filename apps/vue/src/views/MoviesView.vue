@@ -40,6 +40,7 @@ export default {
 
     const apply_filters = () => {
       const {order, year, type} = store.state.movies.filters
+      console.log(store.state.movies.filters, "filters apply")
       let movies = [...allmovies]
       if (order==="year") {
         movies = filters.get_ordered_by_year(movies)
