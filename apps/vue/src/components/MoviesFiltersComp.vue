@@ -1,10 +1,24 @@
 <template>
   <div>
     <h4>Filters</h4>
-    <label for="year">Year</label>
-    <select v-model="selYears" id="year">
-      <option v-for="year in selYears" :key="year.key">{{year.value}}</option>
-    </select>
+    <div>
+      <label for="year">Year</label>
+      <select v-model="selYears" id="year">
+        <option v-for="year in selYears" :key="year.key">{{year.value}}</option>
+      </select>
+    </div>
+    <div>
+      <label for="year">Film type</label>
+      <select v-model="selTypes" id="film-type">
+        <option v-for="type in selTypes" :key="type.key">{{type.value}}</option>
+      </select>
+    </div>
+    <div>
+      <label for="year">Order by</label>
+      <select v-model="selOrder" id="order-by">
+        <option v-for="order in selOrder" :key="order.key">{{order.value}}</option>
+      </select>
+    </div>
   </div>
 </template>
 <script>
@@ -23,15 +37,13 @@ export default {
     const selTypes = ref([])
     const selOrder = ref([])
 
-
     onMounted(async () => {
       let result = await movies.async_find_all()
       const films = result.entries
-      //console.log("FILMS: ", films)
+
       selYears.value = filters.get_distinct_years(films)
       selTypes.value = filters.get_distinct_types(films)
       selOrder.value = filters.get_orderby_values()
-
     })
 
     return {
