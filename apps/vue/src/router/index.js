@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import HomeView from '../views/HomeView.vue'
+import HomeView from '@/views/HomeView.vue'
+import LogoutView from "@/views/LogoutView";
 
 const routes = [
   {
@@ -20,7 +21,7 @@ const routes = [
   {
     path: '/logout',
     name: 'logout',
-    component: () => HomeView
+    component: () => LogoutView
   }
 ]
 
