@@ -29,7 +29,15 @@ export default {
       const result = await movies.async_find_all()
       moviesRef.value = result.entries
       //console.log("movies-view",moviesRef.value)
+      //console.log()
     })
+
+    /*
+    const apply_filters = () => {
+
+    }
+
+     */
 
     return {
       moviesRef
