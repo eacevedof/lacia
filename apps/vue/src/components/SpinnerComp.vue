@@ -1,6 +1,6 @@
 <template>
   <div v-show="show">
-    <img alt="spinner" src="../assets/spinner.png" height="300" width="300">
+    <img alt="spinner" src="../assets/spinner.png" height="150" width="150">
   </div>
 </template>
 <script>
