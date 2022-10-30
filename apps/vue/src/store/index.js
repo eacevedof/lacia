@@ -4,9 +4,9 @@ export default createStore({
   state: {
     movies: {
       filters: {
-        order: null,
-        year: null,
-        type: null
+        order: "",
+        year: "",
+        type: ""
       }
     }
   },

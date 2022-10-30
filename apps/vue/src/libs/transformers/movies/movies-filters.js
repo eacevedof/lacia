@@ -8,6 +8,7 @@ const get_filtered_by_type = (type, movs) => movs.filter(movie => movie?.program
 const get_filtered_by_year = (year, movs) => movs.filter(movie => parseInt(movie?.releaseYear) === parseInt(year))
 
 const _order_by_name = (moviea, movieb) => {
+    console.log(moviea.title, movieb.title)
     if (moviea.title > movieb.title) return 1
     if (moviea.title < movieb.title) return -1
     return 0

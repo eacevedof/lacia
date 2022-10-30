@@ -38,8 +38,13 @@ export default {
     watch(() => store.getters.get_filter_order, function() {
       const order = store.state.movies.filters.order
       console.log("order",order)
-      if(order==="Year") moviesRef.value = filters.get_ordered_by_year(order, allmovies)
-      else moviesRef.value = filters.get_ordered_by_name(order, allmovies)
+
+      if(order==="Year") {
+        moviesRef.value = filters.get_ordered_by_year(order, allmovies)
+        return
+      }
+      alert("by name")
+      moviesRef.value = filters.get_ordered_by_name(order, allmovies)
     })
 
     watch(() => store.getters.get_filter_type, function() {
