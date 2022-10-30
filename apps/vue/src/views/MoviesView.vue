@@ -2,11 +2,11 @@
   <div class="about">
     <h1>Movies page</h1>
     <ul>
-      <li v-for="movie in moviesRef" :key="movie.title">
-        <p>xxxx</p>
+      <li v-for="(movie, index) in moviesRef" :key="`mov-${index}`">
+        <p>movie: {{index + 1}}</p>
         <b>title: {{ movie.title }}</b>
         <p>desc: {{ movie.description}}</p>
-        <img src="{{movie.images['Poster Art'].url}}">
+        <img :src="movie.images['Poster Art'].url" height="150" width="100">
       </li>
     </ul>
   </div>
