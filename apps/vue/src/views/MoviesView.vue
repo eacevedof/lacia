@@ -6,7 +6,9 @@
         <p>movie: {{index + 1}}</p>
         <b>title: {{ movie.title }}</b>
         <p>desc: {{ movie.description}}</p>
-        <img :src="movie.images['Poster Art'].url" height="150" width="100">
+        <a :href="movie.images['Poster Art'].url" target="_blank">
+          <img :src="movie.images['Poster Art'].url" height="150" width="100">
+        </a>
       </li>
     </ul>
   </div>
