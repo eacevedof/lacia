@@ -35,29 +35,27 @@ export default {
       moviesRef.value = [...allmovies]
     })
 
-    watch(() => store.getters.get_filter_order, function() {
-      const order = store.state.movies.filters.order
-      console.log("order",order)
-
-      if(order==="Year") {
-        moviesRef.value = filters.get_ordered_by_year(order, allmovies)
-        return
+    const apply_filters = () => {
+      const {order, year, type} = store.state.movies.filters
+      let movies = [...allmovies]
+      if (order==="year") {
+        movies = filters.get_ordered_by_year(movies)
       }
-      alert("by name")
-      moviesRef.value = filters.get_ordered_by_name(order, allmovies)
-    })
+      if (order==="name") {
+        movies = filters.get_ordered_by_name(movies)
+      }
+      if (year!=="") {
+        movies = filters.get_filtered_by_year(year, movies)
+      }
+      if (type) {
+        movies = filters.get_filtered_by_type(type, movies)
+      }
+      moviesRef.value = [...movies]
+    }
 
-    watch(() => store.getters.get_filter_type, function() {
-      const type = store.state.movies.filters.type
-      console.log("type",type)
-      moviesRef.value = filters.get_filtered_by_type(type, allmovies)
-    })
-
-    watch(() => store.getters.get_filter_year, function() {
-      const year = store.state.movies.filters.year
-      console.log("year",year)
-      moviesRef.value = filters.get_filtered_by_year(year, allmovies)
-    })
+    watch(() => store.getters.get_filter_order, apply_filters)
+    watch(() => store.getters.get_filter_type, apply_filters)
+    watch(() => store.getters.get_filter_year, apply_filters)
 
     return {
       moviesRef

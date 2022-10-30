@@ -4,8 +4,8 @@ const get_distinct_years = movies => [emptykeyvalue, ...Array.from(new Set(movie
 const get_distinct_types = movies => [emptykeyvalue, ...Array.from(new Set(movies.map(movie => movie?.programType ?? 0))).sort().map(type => ({key:type,value:type}))]
 const get_orderby_values = () => [emptykeyvalue, {key:"name",value:"Name"}, {key:"year",value:"Year"}]
 
-const get_filtered_by_type = (type, movs) => movs.filter(movie => movie?.programType === type)
-const get_filtered_by_year = (year, movs) => movs.filter(movie => parseInt(movie?.releaseYear) === parseInt(year))
+const get_filtered_by_type = (type, movs) => !type ? movs : movs.filter(movie => movie?.programType === type)
+const get_filtered_by_year = (year, movs) => !year ? movs : movs.filter(movie => parseInt(movie?.releaseYear) === parseInt(year))
 
 const _order_by_name = (moviea, movieb) => {
     console.log(moviea.title, movieb.title)
@@ -22,8 +22,8 @@ const _order_by_year = (moviea, movieb) => {
     return 0
 }
 
-const get_ordered_by_year = (year, movs) => movs.sort(_order_by_year)
-const get_ordered_by_name = (name, movs) => movs.sort(_order_by_name)
+const get_ordered_by_year = movs => movs.sort(_order_by_year)
+const get_ordered_by_name = movs => movs.sort(_order_by_name)
 
 
 const filters  = {

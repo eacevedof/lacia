@@ -4,19 +4,19 @@
     <div>
       <label for="year">Year</label>
       <select v-model="relFilterYear" id="year" @change="emit_filter_applied">
-        <option v-for="year in selYears" :key="year.key">{{year.value}}</option>
+        <option v-for="year in selYears" :value="year.key" :key="year.key">{{year.value}}</option>
       </select>
     </div>
     <div>
       <label for="film-type">Film type</label>
       <select v-model="relFilterType" id="film-type" @change="emit_filter_applied">
-        <option v-for="type in selTypes" :key="type.key">{{type.value}}</option>
+        <option v-for="type in selTypes" :value="type.key" :key="type.key">{{type.value}}</option>
       </select>
     </div>
     <div>
       <label for="order-by">Order by</label>
       <select v-model="refFilterOrder" id="order-by" @change="emit_filter_applied">
-        <option v-for="order in selOrder" :key="order.key">{{order.value}}</option>
+        <option v-for="order in selOrder" :value="order.key" :key="order.key">{{order.value}}</option>
       </select>
     </div>
   </div>
@@ -51,14 +51,15 @@ export default {
     })
 
     const emit_filter_applied = () => {
-      console.log(relFilterType.value,refFilterOrder.value, relFilterYear.value)
+      //console.log(relFilterType.value,refFilterOrder.value, relFilterYear.value)
       store.state.movies.filters.type = relFilterType.value
       store.state.movies.filters.order = refFilterOrder.value
       store.state.movies.filters.year = relFilterYear.value
-       store.dispatch("set_order_action")
+
+      store.dispatch("set_order_action")
       store.dispatch("set_type_action")
       store.dispatch("set_year_action")
-      console.log("movies",store.state.movies.filters)
+      //console.log("movies",store.state.movies.filters)
     }
 
     return {
