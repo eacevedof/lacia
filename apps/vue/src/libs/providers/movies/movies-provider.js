@@ -8,5 +8,6 @@ export const async_find_all = async () => {
         return movies.data
     } catch (err) {
         console.log("movies async find all error")
+        return []
     }
 }

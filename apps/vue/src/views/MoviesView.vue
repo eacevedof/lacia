@@ -1,5 +1,31 @@
 <template>
   <div class="about">
     <h1>Movies page</h1>
+    <ul>
+      <li v-for="movie in moviesRef" :key="movie.title">
+        <p>xxxx</p>
+        <b>title: {{ movie.title }}</b>
+        <p>desc: {{ movie.description}}</p>
+        <img src="{{movie.images['Poster Art'].url}}">
+      </li>
+    </ul>
   </div>
 </template>
+<script>
+import {onMounted, ref} from "vue"
+import {async_find_all} from "@/libs/providers/movies/movies-provider"
+
+
+export default {
+  setup() {
+    const moviesRef = ref([])
+    onMounted(async () => {
+      moviesRef.value = await async_find_all()
+    })
+
+    return {
+      moviesRef
+    }
+  }
+}
+</script>
