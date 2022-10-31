@@ -39,7 +39,7 @@ SPOTIFY_CLIENT_SECRET=yyy
 - servidor movies.json
   - [http://localhost:9090](http://localhost:9090/)
 
-- servidor front (sirve correctamente pero el dist generado no funciona correctamente. En su lugar: `make js-serve`)
+- servidor front (sirve correctamente pero el dist generado no funciona por error en el router. En su lugar: `make js-serve`)
   - [http://localhost:9100](http://localhost:9100)
 
 ## ejecutar tests
